@@ -1,0 +1,10 @@
+{
+  "AppVersion": "2.0.0.0",
+  "Title": "Neon Hong Kong Audio Skyline",
+  "Type": "web",
+  "FileName": "index.html",
+  "Arguments": "--audio",
+  "Description": "Neon Hong Kong skyline with system-audio reactive bars rising into the sky and a live 12-hour clock.",
+  "Tags": ["audio visualizer", "city", "neon"],
+  "Author": "maximebl-ux"
+}

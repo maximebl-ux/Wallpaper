@@ -186,7 +186,7 @@
     ctx.globalCompositeOperation = "lighter";
     for (let i = 0; i < BARS; i++) {
       const v = barLevels[i];
-      const h = Math.max(2, v * H * 0.48 * boost);
+      const h = Math.max(2, v * H * 0.56 * boost);
       const x = i * bw;
       const g = ctx.createLinearGradient(0, baseY - h, 0, baseY);
       g.addColorStop(0, "rgba(255,255,255,.75)");
@@ -196,7 +196,7 @@
       const pad = Math.max(0.8, bw * 0.32);
       ctx.fillRect(x + pad, baseY - h, Math.max(1, bw - pad * 2), h);
 
-      const py = baseY - Math.max(2, barPeaks[i] * H * 0.48 * boost) - 3;
+      const py = baseY - Math.max(2, barPeaks[i] * H * 0.56 * boost) - 3;
       ctx.fillStyle = "rgba(255,255,255,.8)";
       ctx.fillRect(x + pad, py, Math.max(1, bw - pad * 2), 1.5);
     }
