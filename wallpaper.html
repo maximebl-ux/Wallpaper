@@ -33,6 +33,7 @@
     backdrop-filter: blur(6px); transition: opacity .6s ease;
   }
   #hint.hidden { opacity: 0; pointer-events: none; }
+  #hint:hover { background: rgba(30,40,90,.7); }
 </style>
 </head>
 <body>
@@ -43,7 +44,7 @@
   <div class="date" id="clockDate"></div>
 </div>
 
-<div id="hint">Browser preview &mdash; set as a Wallpaper Engine / Lively wallpaper for system-audio reactivity</div>
+<div id="hint">Click here to react to a YouTube video / tab audio (or use Wallpaper Engine / Lively)</div>
 
 <script>
 (() => {
@@ -87,6 +88,33 @@
   const barPeaks = new Float32Array(BARS);
   let idlePhase = 0;
 
+  // Browser fallback: capture tab / system audio via screen share
+  let browserAnalyser = null, browserData = null;
+  async function captureTabAudio() {
+    if (browserAnalyser) return;
+    try {
+      const stream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+        audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false }
+      });
+      const at = stream.getAudioTracks()[0];
+      if (!at) {
+        document.getElementById("hint").textContent = "No audio shared - pick a Chrome TAB and check 'share tab audio'";
+        return;
+      }
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      const src = ac.createMediaStreamSource(new MediaStream([at]));
+      browserAnalyser = ac.createAnalyser();
+      browserAnalyser.fftSize = 512;
+      browserAnalyser.smoothingTimeConstant = 0.8;
+      src.connect(browserAnalyser);
+      browserData = new Uint8Array(browserAnalyser.frequencyBinCount);
+      stream.getVideoTracks().forEach(t => t.stop());
+      hideHint();
+    } catch (e) { /* user cancelled */ }
+  }
+  document.getElementById("hint").addEventListener("click", captureTabAudio);
+
   if (typeof window.wallpaperRegisterAudioListener === "function") {
     window.wallpaperRegisterAudioListener((arr) => {
       for (let i = 0; i < SYS_BINS; i++) sysData[i] = arr[i] || 0;
@@ -109,6 +137,12 @@
   }
 
   function updateBars(dt) {
+    if (!sysAudio && browserAnalyser) {
+      browserAnalyser.getByteFrequencyData(browserData);
+      const usable = Math.floor(browserData.length * 0.78);
+      for (let i = 0; i < SYS_BINS; i++) sysData[i] = browserData[Math.floor(i / SYS_BINS * usable)] / 255;
+      sysAudio = true;
+    }
     if (sysAudio) {
       for (let i = 0; i < BARS; i++) {
         const t0 = Math.pow(i / BARS, 1.6);
@@ -135,13 +169,13 @@
   }
 
   function drawBars() {
-    const baseY = H * 0.74;
+    const baseY = H * 0.66;
     const bw = W / BARS;
     ctx.save();
     ctx.globalCompositeOperation = "lighter";
     for (let i = 0; i < BARS; i++) {
       const v = barLevels[i];
-      const h = Math.max(3, v * H * 0.34);
+      const h = Math.max(3, v * H * 0.30);
       const x = i * bw;
       const hue = 200 + (i / BARS) * 160;
       const g = ctx.createLinearGradient(0, baseY - h, 0, baseY);
@@ -153,7 +187,7 @@
       const pad = Math.max(1, bw * 0.18);
       ctx.fillRect(x + pad, baseY - h, bw - pad * 2, h);
 
-      const py = baseY - Math.max(3, barPeaks[i] * H * 0.34) - 4;
+      const py = baseY - Math.max(3, barPeaks[i] * H * 0.30) - 4;
       ctx.shadowBlur = 0;
       ctx.fillStyle = `hsla(${hue}, 100%, 80%, .85)`;
       ctx.fillRect(x + pad, py, bw - pad * 2, 2);
