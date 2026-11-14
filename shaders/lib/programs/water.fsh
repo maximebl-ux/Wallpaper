@@ -1,11 +1,11 @@
-// Translucents refract the already-rendered opaque albedo behind them.
-// Water additionally stores a rippled normal so composite can add
-// reflections and sun glint.
+// Translucents refract the opaque scene handed over by the deferred
+// pass (colortex4). Water additionally stores a rippled normal so
+// composite can add reflections and sun glint.
 #include "/lib/settings.glsl"
 #include "/lib/common.glsl"
 
 uniform sampler2D gtexture;
-uniform sampler2D colortex0;
+uniform sampler2D colortex4;
 uniform mat4 gbufferModelView;
 uniform vec3 cameraPosition;
 uniform float frameTimeCounter;
@@ -32,7 +32,7 @@ void main() {
     if (color.a < 0.01) discard;
 
     vec2 screenUv = clamp(gl_FragCoord.xy / vec2(viewWidth, viewHeight), vec2(0.001), vec2(0.999));
-    vec3 bg = texture(colortex0, screenUv).rgb;
+    vec3 bg = texture(colortex4, screenUv).rgb;
     vec3 tint = color.rgb * glcolor.rgb;
 
     vec3 surface;

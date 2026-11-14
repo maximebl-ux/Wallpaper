@@ -47,3 +47,14 @@ const float sunPathRotation = -35.0; // [-45.0 -35.0 -25.0 -15.0 0.0]
 #define SATURATION 1.08 // [0.9 1.0 1.08 1.15 1.25]
 #define CONTRAST 1.03 // [0.95 1.0 1.03 1.06 1.1]
 #define DITHERING
+
+// ---------------- Buffer formats ----------------
+// Detected by the loader from these const declarations. Kept in a
+// block comment because the format names are not real GLSL values.
+// colortex0/3 hold HDR scene/bloom data, colortex1 holds octahedral
+// normals; the rest use the RGBA8 default.
+/*
+const int colortex0Format = RGBA16F;
+const int colortex1Format = RGBA16;
+const int colortex3Format = RGBA16F;
+*/

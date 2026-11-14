@@ -14,6 +14,7 @@ out float materialId;
 void main() {
     texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
     lmcoord  = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
+    lmcoord  = lmcoord / (30.0 / 32.0) - (1.0 / 32.0); // raw range [1/32,31/32] -> [0,1]
     glcolor  = gl_Color;
     worldNormal = mat3(gbufferModelViewInverse) * (gl_NormalMatrix * gl_Normal);
 
