@@ -1,3 +1,2 @@
-#version 120
-
-#include "/src/gbuffers_textured_lit.vsh"
+#version 330 compatibility
+#include "/lib/programs/textured.vsh"

@@ -1,4 +1,3 @@
-#version 120
-
+#version 330 compatibility
 #define DIM_END
-#include "/src/gbuffers_entities.fsh"
+#include "/lib/programs/entities.fsh"

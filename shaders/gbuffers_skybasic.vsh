@@ -1,8 +1,2 @@
-#version 120
-
-varying vec3 rayDir;
-
-void main() {
-    gl_Position = ftransform();
-    rayDir = (gl_ModelViewMatrix * gl_Vertex).xyz;
-}
+#version 330 compatibility
+#include "/lib/programs/skybasic.vsh"

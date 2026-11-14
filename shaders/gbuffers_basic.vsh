@@ -1,5 +1,2 @@
-#version 120
-
-void main() {
-    gl_Position = ftransform();
-}
+#version 330 compatibility
+#include "/lib/programs/basic.vsh"

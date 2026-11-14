@@ -1,3 +1,2 @@
-#version 120
-
-#include "/src/gbuffers_terrain.fsh"
+#version 330 compatibility
+#include "/lib/programs/terrain.fsh"

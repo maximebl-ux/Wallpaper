@@ -1,3 +1,2 @@
-#version 120
-
-#include "/src/composite.fsh"
+#version 330 compatibility
+#include "/lib/programs/composite.fsh"

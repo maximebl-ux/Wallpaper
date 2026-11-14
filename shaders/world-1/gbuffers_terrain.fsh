@@ -1,4 +1,3 @@
-#version 120
-
+#version 330 compatibility
 #define DIM_NETHER
-#include "/src/gbuffers_terrain.fsh"
+#include "/lib/programs/terrain.fsh"

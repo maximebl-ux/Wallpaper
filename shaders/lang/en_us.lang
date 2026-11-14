@@ -1,0 +1,66 @@
+screen.SHADOW=Shadows
+screen.LIGHT=Lighting
+screen.WATER=Water
+screen.ATMOSPHERE=Sky & Atmosphere
+screen.POST=Post Processing
+
+profile.PERFORMANCE=Performance
+profile.BALANCED=Balanced (Stock)
+profile.HIGH=High
+profile.ULTRA=Ultra
+
+option.SHADOWS=Shadows
+option.SHADOWS.comment=Sun and moon shadow mapping. Large performance cost. Keep enabled for the signature long dusk shadows.
+option.SHADOW_COLOR=Colored Shadows
+option.SHADOW_COLOR.comment=Tints shadows through stained glass and water. Small cost.
+option.shadowMapResolution=Shadow Resolution
+option.shadowDistance=Shadow Distance
+option.SHADOW_FILTER=Shadow Filtering
+option.SHADOW_FILTER.comment=PCF tap count. Higher is softer and smoother, and costs more.
+option.SHADOW_SOFTNESS=Shadow Softness
+option.SHADOW_DISTORT_STRENGTH=Shadow Distortion
+option.sunPathRotation=Sun Path Tilt
+option.AO_STRENGTH=Vanilla AO Strength
+option.SSAO=Screen Space AO
+option.SSAO.comment=Adds contact shading on top of vanilla smooth lighting. Moderate cost.
+option.SSAO_STRENGTH=SSAO Strength
+option.MIN_LIGHT=Minimum Light
+option.EMISSIVE_STRENGTH=Emissive Glow
+option.EMISSIVE_STRENGTH.comment=Boosts surfaces lit by strong block light into the bloom pass. Uses the vanilla block-light value; it does not make every bright texture glow.
+option.BLOCKLIGHT_TINT=Warm Block Light
+option.WATER_QUALITY=Water Reflections
+option.WATER_QUALITY.comment=0 = matte, 1 = sky reflections only, 2 = sky + screen space reflections, 3 = longer screen space ray march.
+option.WATER_WAVE_SIZE=Wave Height
+option.WATER_WAVE_SPEED=Wave Speed
+option.WATER_SPECULAR=Sun Glint
+option.ATMOSPHERE=Atmospheric Fog
+option.FOG_DENSITY=Fog Density
+option.VOLUMETRIC_LIGHT=Volumetric Light
+option.VOLUMETRIC_LIGHT.comment=Screen-space light shafts at dawn and dusk. 0 = off, 1 = fast, 2 = high quality.
+option.CLOUD_QUALITY=Clouds
+option.CLOUD_QUALITY.comment=0 = off, 1 = low detail, 2 = high detail. Procedural cloud layer replaces vanilla clouds.
+option.CLOUD_COVERAGE=Cloud Coverage
+option.STAR_BRIGHTNESS=Star Brightness
+option.RAIN_FOG=Rain Haze
+option.BLOOM=Bloom
+option.BLOOM_STRENGTH=Bloom Strength
+option.BLOOM_THRESHOLD=Bloom Threshold
+option.EXPOSURE=Exposure
+option.SATURATION=Saturation
+option.CONTRAST=Contrast
+option.DITHERING=Dithering
+
+value.SHADOW_FILTER.0=Off
+value.SHADOW_FILTER.1=Soft
+value.SHADOW_FILTER.2=Soft+
+value.SHADOW_FILTER.3=Very Soft
+value.WATER_QUALITY.0=Off
+value.WATER_QUALITY.1=Sky Only
+value.WATER_QUALITY.2=Sky + Screen
+value.WATER_QUALITY.3=Screen High
+value.VOLUMETRIC_LIGHT.0=Off
+value.VOLUMETRIC_LIGHT.1=Fast
+value.VOLUMETRIC_LIGHT.2=High
+value.CLOUD_QUALITY.0=Off
+value.CLOUD_QUALITY.1=Low
+value.CLOUD_QUALITY.2=High

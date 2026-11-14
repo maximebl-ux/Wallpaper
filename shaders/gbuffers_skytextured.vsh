@@ -1,3 +1,2 @@
-#version 120
-
-#include "/src/gbuffers_skytextured.vsh"
+#version 330 compatibility
+#include "/lib/programs/skytextured.vsh"

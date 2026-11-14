@@ -1,4 +1,3 @@
-#version 120
-
+#version 330 compatibility
 #define DIM_NETHER
-#include "/src/gbuffers_water.vsh"
+#include "/lib/programs/water.vsh"

@@ -1,3 +1,2 @@
-#version 120
-
-#include "/src/gbuffers_entities.vsh"
+#version 330 compatibility
+#include "/lib/programs/entities.vsh"
