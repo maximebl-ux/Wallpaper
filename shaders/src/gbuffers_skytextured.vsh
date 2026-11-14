@@ -1,5 +1,5 @@
-varying vec2 texcoord;
-varying vec3 rayDir;
+out vec2 texcoord;
+out vec3 rayDir;
 
 void main() {
     gl_Position = ftransform();

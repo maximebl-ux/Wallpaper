@@ -5,11 +5,11 @@ deep indigo and magenta skies that burn into coral and gold at dawn and dusk,
 strongly reflective animated water, long soft shadows with violet shadow tones,
 and a controlled filmic post pipeline.
 
-Built for the **Iris** shader loader (**OptiFine-format pack**). Verified against
-Iris **1.11.4+26.2-fabric** on Minecraft **26.2** (Fabric). Iris supports
-Minecraft 1.16.5 through 26.3 on Fabric; this pack uses only long-established
-OptiFine-format features and should also load under other Iris versions and
-OptiFine-style loaders that support the same format.
+Built for the **Iris** shader loader, using the modern Iris shader-pack
+baseline (`#version 330 compatibility`, `RENDERTARGETS`, `layout` outputs,
+`gtexture`, `alphaTestRef`). Verified against Iris **1.11.4+26.2-fabric** on
+Minecraft **26.2** (Fabric). The `RENDERTARGETS` directive is Iris-specific, so
+this pack targets Iris (not legacy OptiFine builds).
 
 ## Install
 

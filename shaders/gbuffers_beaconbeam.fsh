@@ -1,12 +1,14 @@
-#version 120
+#version 330 compatibility
 
 uniform sampler2D gtexture;
 
-varying vec2 texcoord;
+in vec2 texcoord;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
+    vec4 tex = texture(gtexture, texcoord) * gl_Color;
     // Fullbright emissive; bloom picks it up naturally
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(tex.rgb * 2.2, tex.a);
+    fragColor = vec4(tex.rgb * 2.2, tex.a);
 }

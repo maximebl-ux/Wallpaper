@@ -1,4 +1,4 @@
-#version 120
+#version 330 compatibility
 
 #include "/settings.glsl"
 
@@ -7,7 +7,7 @@ const float shadowDistance = 160.0;
 // Tilts the sun path for longer, more cinematic shadows
 const float sunPathRotation = -25.0;
 
-varying vec2 texcoord;
+out vec2 texcoord;
 
 float distortFactor(vec3 p) {
     return length(p.xy) * 0.85 + 0.15;

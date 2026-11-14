@@ -1,4 +1,4 @@
-#version 120
+#version 330 compatibility
 
 #include "/lib/common.glsl"
 #include "/lib/noise.glsl"
@@ -10,7 +10,10 @@ uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 uniform float frameTimeCounter;
 
-varying vec3 rayDir;
+in vec3 rayDir;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
     vec3 rayWorld = normalize(toMat3(gbufferModelViewInverse) * rayDir);
@@ -25,6 +28,5 @@ void main() {
              * nightAmt(h) * STAR_BRIGHTNESS;
     }
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(col, 1.0);
+    fragColor = vec4(col, 1.0);
 }

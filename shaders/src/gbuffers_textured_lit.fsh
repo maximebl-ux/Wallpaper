@@ -1,14 +1,16 @@
 #include "/lib/lighting.glsl"
 
-varying vec2 texcoord;
-varying vec2 lmcoord;
+in vec2 texcoord;
+in vec2 lmcoord;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
+    vec4 tex = texture(gtexture, texcoord) * gl_Color;
     if (tex.a < 0.1) discard;
 
     vec3 col = shadeSimple(tex.rgb, lmcoord);
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(col, tex.a);
+    fragColor = vec4(col, tex.a);
 }

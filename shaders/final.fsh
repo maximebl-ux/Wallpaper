@@ -1,4 +1,4 @@
-#version 120
+#version 330 compatibility
 
 #include "/settings.glsl"
 #include "/lib/noise.glsl"
@@ -8,13 +8,15 @@ uniform sampler2D colortex3;
 uniform float viewWidth;
 uniform float viewHeight;
 
-varying vec2 texcoord;
+in vec2 texcoord;
+
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec3 c = texture2D(colortex0, texcoord).rgb;
+    vec3 c = texture(colortex0, texcoord).rgb;
 
 #if BLOOM == 1
-    c += texture2D(colortex3, texcoord).rgb * BLOOM_STRENGTH;
+    c += texture(colortex3, texcoord).rgb * BLOOM_STRENGTH;
 #endif
 
     c *= EXPOSURE;
@@ -35,5 +37,5 @@ void main() {
     // Fine dithering removes gradient banding
     c += (hash12(gl_FragCoord.xy) - 0.5) / 255.0;
 
-    gl_FragData[0] = vec4(c, 1.0);
+    fragColor = vec4(c, 1.0);
 }

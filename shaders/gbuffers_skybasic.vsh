@@ -1,6 +1,6 @@
-#version 120
+#version 330 compatibility
 
-varying vec3 rayDir;
+out vec3 rayDir;
 
 void main() {
     gl_Position = ftransform();

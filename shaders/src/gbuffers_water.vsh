@@ -1,15 +1,15 @@
-attribute vec4 mc_Entity;
+in vec4 mc_Entity;
 
-varying vec2 texcoord;
-varying vec2 lmcoord;
-varying vec3 viewNormal;
-varying vec3 viewPos;
-varying float matFlag;
+out vec2 texcoord;
+out vec2 lmcoord;
+out vec3 viewNormal;
+out vec3 viewPos;
+out float matFlag;
 
 void main() {
     gl_Position = ftransform();
     texcoord = (gl_TextureMatrix[0] * gl_MultiTexCoord0).xy;
-    lmcoord = (gl_TextureMatrix[1] * gl_MultiTexCoord1).xy;
+    lmcoord = clamp(gl_MultiTexCoord1.xy / 240.0, 0.0, 1.0);
     viewNormal = normalize(gl_NormalMatrix * gl_Normal);
     viewPos = (gl_ModelViewMatrix * gl_Vertex).xyz;
     // Water block ids are mapped in block.properties

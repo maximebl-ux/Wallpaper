@@ -1,10 +1,13 @@
 #include "/lib/lighting.glsl"
 
-varying vec2 texcoord;
-varying vec3 rayDir;
+in vec2 texcoord;
+in vec3 rayDir;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
+    vec4 tex = texture(gtexture, texcoord) * gl_Color;
 
     vec3 rayWorld = normalize(toMat3(gbufferModelViewInverse) * rayDir);
     vec3 sunDir = worldSunDir();
@@ -22,6 +25,5 @@ void main() {
     vec3 col = tex.rgb * mix(moonTint, sunTint, sunW) * 1.3;
 #endif
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(col, tex.a);
+    fragColor = vec4(col, tex.a);
 }

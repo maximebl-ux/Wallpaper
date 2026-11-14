@@ -1,4 +1,4 @@
-#version 120
+#version 330 compatibility
 
 #define DIM_NETHER
 #define TERRAIN_CUTOUT

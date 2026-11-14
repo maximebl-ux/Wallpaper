@@ -1,13 +1,15 @@
-#version 120
+#version 330 compatibility
 
 uniform sampler2D gtexture;
 
-varying vec2 texcoord;
+in vec2 texcoord;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
+    vec4 tex = texture(gtexture, texcoord) * gl_Color;
     if (tex.a < 0.1) discard;
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = tex;
+    fragColor = tex;
 }

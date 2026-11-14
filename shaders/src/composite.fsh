@@ -1,13 +1,16 @@
 #include "/lib/water.glsl"
 #include "/lib/sky.glsl"
 
-varying vec2 texcoord;
+in vec2 texcoord;
+
+/* RENDERTARGETS: 0 */
+layout(location = 0) out vec4 fragColor;
 
 void main() {
-    vec3 color = texture2D(colortex0, texcoord).rgb;
-    float depth0 = texture2D(depthtex0, texcoord).r;
-    float depth1 = texture2D(depthtex1, texcoord).r;
-    float waterFlag = texture2D(colortex1, texcoord).r;
+    vec3 color = texture(colortex0, texcoord).rgb;
+    float depth0 = texture(depthtex0, texcoord).r;
+    float depth1 = texture(depthtex1, texcoord).r;
+    float waterFlag = texture(colortex1, texcoord).r;
     vec3 viewPos = toView(texcoord, depth0);
     vec3 worldRay = normalize(toMat3(gbufferModelViewInverse) * viewPos);
     float h = worldSunDirW().y;
@@ -68,6 +71,5 @@ void main() {
         color = mix(color, fogCol, clamp(f, 0.0, 1.0));
     }
 
-    /* DRAWBUFFERS:0 */
-    gl_FragData[0] = vec4(color, 1.0);
+    fragColor = vec4(color, 1.0);
 }

@@ -69,7 +69,7 @@ vec3 ssrReflection(vec3 viewPos, vec3 viewNormal, inout vec2 hitUv, out float hi
     for (int i = 0; i < SSR_STEPS; i++) {
         vec2 uv = toScreen(p);
         if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) break;
-        float d1 = texture2D(depthtex1, uv).r;
+        float d1 = texture(depthtex1, uv).r;
         if (d1 < 1.0) {
             vec3 scene = toView(uv, d1);
             if (p.z < scene.z) {
@@ -80,13 +80,13 @@ vec3 ssrReflection(vec3 viewPos, vec3 viewNormal, inout vec2 hitUv, out float hi
                 for (int j = 0; j < 4; j++) {
                     vec3 mid = (lo + hi) * 0.5;
                     vec2 muv = toScreen(mid);
-                    float md = texture2D(depthtex1, muv).r;
+                    float md = texture(depthtex1, muv).r;
                     if (mid.z < toView(muv, md).z) hi = mid; else lo = mid;
                 }
                 p = (lo + hi) * 0.5;
                 uv = toScreen(p);
 #endif
-                color = texture2D(colortex0, uv).rgb;
+                color = texture(colortex0, uv).rgb;
                 hitUv = uv;
                 // Fade hits near screen borders so reflections do not snap
                 float b = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));

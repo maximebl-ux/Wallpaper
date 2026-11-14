@@ -39,10 +39,10 @@ float shadowSample(vec3 worldPos, vec3 worldNormal, vec2 screenPos) {
     vec2 o3 = vec2(-sr, -cr) * ts;
 
     float s = 0.0;
-    s += step(proj.z - bias, texture2D(shadowtex0, proj.xy + o0).r);
-    s += step(proj.z - bias, texture2D(shadowtex0, proj.xy + o1).r);
-    s += step(proj.z - bias, texture2D(shadowtex0, proj.xy + o2).r);
-    s += step(proj.z - bias, texture2D(shadowtex0, proj.xy + o3).r);
+    s += step(proj.z - bias, texture(shadowtex0, proj.xy + o0).r);
+    s += step(proj.z - bias, texture(shadowtex0, proj.xy + o1).r);
+    s += step(proj.z - bias, texture(shadowtex0, proj.xy + o2).r);
+    s += step(proj.z - bias, texture(shadowtex0, proj.xy + o3).r);
     return s * 0.25;
 #endif
 }
