@@ -7,7 +7,7 @@
 #include "/lib/palette.glsl"
 #include "/lib/shadows.glsl"
 
-uniform sampler2D texture;
+uniform sampler2D gtexture;
 uniform sampler2D lightmap;
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;

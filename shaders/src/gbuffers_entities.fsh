@@ -8,7 +8,7 @@ varying vec3 viewNormal;
 varying vec3 viewPos;
 
 void main() {
-    vec4 tex = texture2D(texture, texcoord) * gl_Color;
+    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
     if (tex.a < 0.1) discard;
 
     // Hurt/flash overlay from vanilla

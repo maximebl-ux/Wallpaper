@@ -3,14 +3,14 @@
 #include "/lib/common.glsl"
 #include "/lib/palette.glsl"
 
-uniform sampler2D texture;
+uniform sampler2D gtexture;
 uniform mat4 gbufferModelViewInverse;
 uniform vec3 sunPosition;
 
 varying vec2 texcoord;
 
 void main() {
-    vec4 tex = texture2D(texture, texcoord) * gl_Color;
+    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
     if (tex.a < 0.01) discard;
 
     float h = normalize(toMat3(gbufferModelViewInverse) * normalize(sunPosition)).y;

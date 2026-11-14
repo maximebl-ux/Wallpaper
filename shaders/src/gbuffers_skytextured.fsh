@@ -4,7 +4,7 @@ varying vec2 texcoord;
 varying vec3 rayDir;
 
 void main() {
-    vec4 tex = texture2D(texture, texcoord) * gl_Color;
+    vec4 tex = texture2D(gtexture, texcoord) * gl_Color;
 
     vec3 rayWorld = normalize(toMat3(gbufferModelViewInverse) * rayDir);
     vec3 sunDir = worldSunDir();
